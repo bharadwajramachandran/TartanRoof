@@ -36,6 +36,8 @@ def extractVectorsFromListOfPosts(postList):
     return result
 
 def writeFile(filename, contents, mode="wt"):
+    """This is a function taken from the 15-112 website. It writes
+    the string contents to the path defined by the string filename"""
     # wt stands for "write text"
     fout = None
     try:
