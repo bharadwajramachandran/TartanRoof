@@ -21,6 +21,6 @@ def extractVectorsFromListOfPosts(postList):
         upperCaseRatio = 1 - float(lowerCaseCount)/letterCount
         symbolRatio = float(symbolCount)/count
         whiteRatio = float(whiteCount)/count
-        return [upperCaseRatio, symbolRatio, whiteRatio]
+        return [upperCaseRatio, symbolRatio, whiteRatio,count]
         
     return map(extractVectorFromPost,postList)
