@@ -1,0 +1,66 @@
+import string
+import sklearn
+import numpy as np
+from titleParse import *
+import os
+from sklearn import svm
+import re
+from featureHelpers.py import *
+
+#testStringList = getTitles("test_data" + os.sep + "merged.txt")
+#testStringList = getTitles("test.txt")
+"""This is a function designed to extract an attribute vector out of the text of
+a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
+module to determine the quality of the posting itself."""
+
+clf = svm.SVC()
+
+def extractVectorsFromListOfPosts(postList):
+    
+    def extractVectorFromPost(postText):
+        upperCaseText = string.upper(postText)
+        count = len(postText)
+        whiteCount, letterCount, symbolCount, lowerCaseCount = 0, 0 ,0, 0
+        for i in xrange(count):
+            if postText[i] in string.whitespace: whiteCount += 1
+            elif postText[i] in string.ascii_letters: 
+                letterCount += 1
+                lowerCaseCount += (1 - (upperCaseText[i] == postText[i]))
+            else: symbolCount += 1
+            #Python boolean arithmetic casts True to 1 and 0 to False.
+            #If a char was lowercase, the count will increase
+        upperCaseRatio = 1 - float(lowerCaseCount)/letterCount
+        symbolRatio = float(symbolCount)/count
+        whiteRatio = float(whiteCount)/count
+        return [upperCaseRatio, symbolRatio, whiteRatio,count]
+
+    result = np.array(map(extractVectorFromPost,postList))
+    #print result
+    np.set_printoptions(precision=3)
+    np.savetxt('long_run.txt',result)
+    return result
+
+def writeFile(filename, contents, mode="wt"):
+    """This is a function taken from the 15-112 website. It writes
+    the string contents to the path defined by the string filename"""
+    # wt stands for "write text"
+    fout = None
+    try:
+        fout = open(filename, mode)
+        fout.write(contents)
+    finally:
+        if (fout != None): fout.close()
+    return True
+
+def predictScoreForArrayOfVectors(vec_arr):
+    for vec in vec_arr:
+        print clf.predict(vec)
+    return
+
+def getLearningModelFromArray(data_array, scores):
+    clf.fit(data_array,np.array(scores))
+    return True
+
+(scores,titles) = getTitles('output3.txt')
+vectors = extractVectorsFromListOfPosts(titles)
+getLearningModelFromArray(vectors,scores)
