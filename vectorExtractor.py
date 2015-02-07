@@ -1,6 +1,10 @@
 import string
 import sklearn
-import numpy
+import numpy as np
+
+testStringList = ["HELLO", "goodbye", "asdlkfjlkwejrk;46^32043dlkjrtoil",
+                  "HELLO#####"
+                 ]
 
 """This is a function designed to extract an attribute vector out of the text of
 a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
@@ -25,3 +29,19 @@ def extractVectorsFromListOfPosts(postList):
         return [upperCaseRatio, symbolRatio, whiteRatio,count]
         
     return np.array(map(extractVectorFromPost,postList))
+    
+outputString = str(extractVectorsFromListOfPosts(testStringList))
+outputString = ("The input was \n" + str(testStringList) + 
+                "\n\n The output was:\n" + outputString)
+                
+def writeFile(filename, contents, mode="wt"):
+    # wt stands for "write text"
+    fout = None
+    try:
+        fout = open(filename, mode)
+        fout.write(contents)
+    finally:
+        if (fout != None): fout.close()
+    return True
+    
+writeFile("foo.txt", outputString)
