@@ -20,7 +20,16 @@ def URLtoTitle(url):
         if (soup.title == None):
             return ''
         else:
-            return soup.title.string
+            title = soup.title.string
+            with open("titles.txt", "a") as myTitles:
+                myTitles.write((title+"\n").encode('utf8'))
+            paras = soup.find_all('p')
+            for para in paras:
+                print para.get_text()
+                with open("descriptions.txt", "a") as desc_f:
+                    replaced = (para.get_text()).replace('\n',' ')
+                    desc_f.write((replaced+' ').encode('utf8'))
+            return title
 
 def readFile(filename, mode="rt"):
     """This is a function taken from the 15-112 website. It allows the input of
@@ -74,7 +83,6 @@ def getTitles(textfile):
     (scores, URL_list) = (raw_to_tuple(raw_file))
     scores = [int(score) for score in scores]
     result = filter(None, map(URLtoTitle, URL_list))
-    writeFile('titles.txt',unicode(result))
     return (scores,result)
 
 #print getTitles(sys.argv[1])
