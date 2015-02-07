@@ -1,10 +1,11 @@
 import string
 import sklearn
 import numpy as np
+import titleParse
+import os
 
-testStringList = ["HELLO", "goodbye", "asdlkfjlkwejrk;46^32043dlkjrtoil",
-                  "HELLO#####"
-                 ]
+
+testStringList = getTitles("test_data" + os.sep + "merged.txt")
 
 """This is a function designed to extract an attribute vector out of the text of
 a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
