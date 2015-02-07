@@ -5,6 +5,14 @@ import urllib2
 def URLtoTitle(url):
     """This function takes in the URL of a Craigslist listing and extracts the
         title from the post"""
+
+from bs4 import BeautifulSoup
+import sys
+import urllib2
+
+def URLtoTitle(url):
+    """This function takes in the URL of a Craigslist listing and extracts the
+        title from the post"""
     if url == '':
         return ''
     else:
@@ -21,13 +29,14 @@ def URLtoTitle(url):
             return ''
         else:
             title = soup.title.string
-            pbody = soup.find(attrs={'id':'postingbody'})
             with open("titles.txt", "a") as myTitles:
                 myTitles.write((title+"\n").encode('utf8'))
-            with open("descriptions.txt", "a") as desc_f:
-                replaced = (pbody.get_text()).replace('\n',' ')
-                print replaced
-                desc_f.write((replaced+'\n').encode('utf8'))
+            paras = soup.find_all('p')
+            for para in paras:
+                #print para.get_text()
+                with open("descriptions.txt", "a") as desc_f:
+                    replaced = (para.get_text()).replace('\n',' ')
+                    desc_f.write((replaced+' ').encode('utf8'))
             return title
 
 def readFile(filename, mode="rt"):
