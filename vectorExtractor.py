@@ -1,5 +1,6 @@
 import string
 import sklearn
+import numpy
 
 """This is a function designed to extract an attribute vector out of the text of
 a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
@@ -23,4 +24,4 @@ def extractVectorsFromListOfPosts(postList):
         whiteRatio = float(whiteCount)/count
         return [upperCaseRatio, symbolRatio, whiteRatio,count]
         
-    return map(extractVectorFromPost,postList)
+    return np.array(map(extractVectorFromPost,postList))
