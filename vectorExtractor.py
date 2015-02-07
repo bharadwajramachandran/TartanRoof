@@ -29,11 +29,7 @@ def extractVectorsFromListOfPosts(postList):
         return [upperCaseRatio, symbolRatio, whiteRatio,count]
         
     return np.array(map(extractVectorFromPost,postList))
-    
-outputString = str(extractVectorsFromListOfPosts(testStringList))
-outputString = ("The input was \n" + str(testStringList) + 
-                "\n\n The output was:\n" + outputString)
-                
+
 def writeFile(filename, contents, mode="wt"):
     # wt stands for "write text"
     fout = None
@@ -43,5 +39,3 @@ def writeFile(filename, contents, mode="wt"):
     finally:
         if (fout != None): fout.close()
     return True
-    
-writeFile("foo.txt", outputString)
