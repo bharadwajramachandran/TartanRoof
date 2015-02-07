@@ -1,4 +1,5 @@
 import string
+import sklearn
 
 """This is a function designed to extract an attribute vector out of the text of
 a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
@@ -7,8 +8,9 @@ def extractVectorsFromListOfPosts(postList):
     
     def extractVectorFromPost(postText):
         upperCaseText = string.upper(postText)
-        count, whiteCount, letterCount, symbolCount, lowerCaseCount = 0, 0, 0 ,0, 0
-        for i in xrange(len(postText)):
+        count = len(postText)
+        whiteCount, letterCount, symbolCount, lowerCaseCount = 0, 0 ,0, 0
+        for i in xrange(count):
             if postText[i] in string.whitespace: whiteCount += 1
             elif postText[i] in string.ascii_letters: 
                 letterCount += 1
@@ -21,7 +23,4 @@ def extractVectorsFromListOfPosts(postList):
         whiteRatio = float(whiteCount)/count
         return [upperCaseRatio, symbolRatio, whiteRatio]
         
-    return [extractVectorFromPost(postText) for postText in postList]
-    
-def extractVectorsFromListOfPosts(postList):
-    return [extractVectorFromPost]
+    return map(extractVectorFromPost,postList)
