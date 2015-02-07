@@ -39,10 +39,28 @@
 2 http://sfbay.craigslist.org/sfc/apa/4881065426.html
 3 http://sfbay.craigslist.org/sfc/apa/4863592434.html
 2 http://sfbay.craigslist.org/sby/apa/4881064447.html
-
-
-
-
+2 http://sfbay.craigslist.org/eby/apa/4881063997.html
+2 http://sfbay.craigslist.org/sby/apa/4881060926.html
+2 http://sfbay.craigslist.org/sfc/apa/4881063482.html
+3 http://sfbay.craigslist.org/sfc/apa/4881063006.html
+1 http://sfbay.craigslist.org/eby/apa/4881060107.html
+2 http://sfbay.craigslist.org/sfc/apa/4881059984.html
+1 http://sfbay.craigslist.org/sfc/apa/4869748476.html
+1 http://sfbay.craigslist.org/nby/apa/4881054952.html
+1 http://sfbay.craigslist.org/pen/apa/4881053382.html
+3 http://sfbay.craigslist.org/eby/apa/4881058265.html
+3 http://sfbay.craigslist.org/eby/apa/4881055002.html
+1 http://sfbay.craigslist.org/nby/apa/4872481510.html
+1 http://sfbay.craigslist.org/eby/apa/4881055739.html
+2 http://sfbay.craigslist.org/sfc/apa/4857595929.html
+3 http://sfbay.craigslist.org/sfc/apa/4881055276.html
+2 http://sfbay.craigslist.org/sfc/apa/4860752213.html
+2 http://sfbay.craigslist.org/eby/apa/4878096681.html
+1 http://sfbay.craigslist.org/sby/apa/4881051976.html
+3 http://sfbay.craigslist.org/pen/apa/4874343739.html
+2 http://sfbay.craigslist.org/pen/apa/4860887484.html
+3 http://sfbay.craigslist.org/sfc/apa/4881050695.html
+1 http://sfbay.craigslist.org/sby/apa/4881031138.html
 
 
 
