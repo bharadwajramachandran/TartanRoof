@@ -1,6 +1,0 @@
-from bs4 import BeautifulSoup
-import sys
-
-URL_txt = open(sys.argv[1])
-URL_list = (URL_txt.read()).split()
-
