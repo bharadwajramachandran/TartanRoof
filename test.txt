@@ -1,0 +1,9 @@
+1 https://www.google.com
+2 https://www.facebook.com
+3 https://pittsburgh.craigslist.org/apa/4855484490.html
+4 https://pittsburgh.craigslist.org/apa/4880756671.html
+5 https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&es_th=1&ie=UTF-8#q=top+visited+websites
+6 http://scikit-learn.org/stable/tutorial/basic/tutorial.html
+7 http://scikit-learn.org/stable/documentation.html
+8 https://inbox.google.com/u/0/
+10 https://pittsburgh.craigslist.org/apa/4880806927.html

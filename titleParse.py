@@ -6,7 +6,6 @@ def URLtoTitle(url):
     if url == '':
         return ''
     else:
-        print url
         response = soup = None
         assert(url.startswith("http"))
         try:
@@ -35,18 +34,27 @@ def removeSource(raw_text):
     data_arr = raw_text.split()
     len_d = len(data_arr)
     if (len_d > 1):
-        print data_arr
         return data_arr[1]
     elif (len_d == 0):
         return ''
     else:
-        print data_arr
         return ''
+
+def writeFile(filename, contents, mode="wt"):
+    # wt stands for "write text"
+    fout = None
+    try:
+        fout = open(filename, mode)
+        fout.write(contents)
+    finally:
+        if (fout != None): fout.close()
+    return True
 
 def getTitles(textfile):
     raw_file = readFile(textfile).split('\n')
     last_elem = raw_file.pop()
     URL_list = map(removeSource, raw_file)
+    writeFile('long_run.txt', str(URL_list))
     return map(URLtoTitle, URL_list)
 
-print getTitles(sys.argv[1])
+#print getTitles(sys.argv[1])

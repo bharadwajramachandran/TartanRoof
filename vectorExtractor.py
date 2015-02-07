@@ -1,12 +1,12 @@
 import string
 import sklearn
 import numpy as np
-import titleParse
+from titleParse import *
 import os
 
 
-testStringList = getTitles("test_data" + os.sep + "merged.txt")
-
+#testStringList = getTitles("test_data" + os.sep + "merged.txt")
+testStringList = getTitles("test.txt")
 """This is a function designed to extract an attribute vector out of the text of
 a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
 module to determine the quality of the posting itself."""
@@ -28,7 +28,9 @@ def extractVectorsFromListOfPosts(postList):
         symbolRatio = float(symbolCount)/count
         whiteRatio = float(whiteCount)/count
         return [upperCaseRatio, symbolRatio, whiteRatio,count]
-        
+
+    result = np.array(map(extractVectorFromPost,postList))
+    #print result
     return np.array(map(extractVectorFromPost,postList))
 
 def writeFile(filename, contents, mode="wt"):
