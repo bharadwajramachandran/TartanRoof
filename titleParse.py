@@ -54,7 +54,8 @@ def getTitles(textfile):
     raw_file = readFile(textfile).split('\n')
     last_elem = raw_file.pop()
     URL_list = map(removeSource, raw_file)
-    writeFile('long_run.txt', str(URL_list))
-    return map(URLtoTitle, URL_list)
+    result = map(URLtoTitle, URL_list)
+    writeFile('titles.txt',str(result))
+    return result
 
 #print getTitles(sys.argv[1])

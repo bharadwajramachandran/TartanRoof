@@ -6,7 +6,7 @@ import os
 
 
 #testStringList = getTitles("test_data" + os.sep + "merged.txt")
-testStringList = getTitles("test.txt")
+#testStringList = getTitles("test.txt")
 """This is a function designed to extract an attribute vector out of the text of
 a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
 module to determine the quality of the posting itself."""
@@ -31,7 +31,9 @@ def extractVectorsFromListOfPosts(postList):
 
     result = np.array(map(extractVectorFromPost,postList))
     #print result
-    return np.array(map(extractVectorFromPost,postList))
+    np.set_printoptions(precision=3)
+    np.savetxt('long_run.txt',result)
+    return result
 
 def writeFile(filename, contents, mode="wt"):
     # wt stands for "write text"
@@ -42,3 +44,5 @@ def writeFile(filename, contents, mode="wt"):
     finally:
         if (fout != None): fout.close()
     return True
+
+extractVectorsFromListOfPosts(getTitles('output.txt'))
