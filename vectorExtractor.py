@@ -3,13 +3,16 @@ import sklearn
 import numpy as np
 from titleParse import *
 import os
-
+from sklearn.naive_bayes import MultinomialNB
 
 #testStringList = getTitles("test_data" + os.sep + "merged.txt")
 #testStringList = getTitles("test.txt")
 """This is a function designed to extract an attribute vector out of the text of
 a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
 module to determine the quality of the posting itself."""
+
+clf = MultinomialNB()
+
 def extractVectorsFromListOfPosts(postList):
     
     def extractVectorFromPost(postText):
@@ -44,3 +47,16 @@ def writeFile(filename, contents, mode="wt"):
     finally:
         if (fout != None): fout.close()
     return True
+
+def predictScoreForArrayOfVectors(vec_arr):
+    for vec in vec_arr:
+        print clf.predict(vec)
+    return
+
+def getLearningModelFromArray(data_array, scores):
+    clf.fit(data_array,np.array(scores))
+    return True
+
+(scores,titles) = getTitles('output2.txt')
+vectors = extractVectorsFromListOfPosts(titles)
+getLearningModelFromArray(vectors,scores)

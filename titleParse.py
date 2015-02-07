@@ -40,6 +40,16 @@ def removeSource(raw_text):
     else:
         return ''
 
+def raw_to_tuple(raw_text):
+    scores = []
+    titles = []
+    for line in raw_text:
+        data_arr = line.split()
+        if (len(data_arr) > 1):
+            scores.append(data_arr[0])
+            titles.append(data_arr[1])
+    return (scores, titles)
+
 def writeFile(filename, contents, mode="wt"):
     # wt stands for "write text"
     fout = None
@@ -52,10 +62,9 @@ def writeFile(filename, contents, mode="wt"):
 
 def getTitles(textfile):
     raw_file = readFile(textfile).split('\n')
-    last_elem = raw_file.pop()
-    URL_list = map(removeSource, raw_file)
-    result = map(URLtoTitle, URL_list)
-    writeFile('titles.txt',str(result))
-    return result
+    (scores, URL_list) = (raw_to_tuple(raw_file))
+    result = filter(None, map(URLtoTitle, URL_list))
+    writeFile('titles.txt',unicode(result))
+    return (scores,result)
 
 #print getTitles(sys.argv[1])
