@@ -44,5 +44,3 @@ def writeFile(filename, contents, mode="wt"):
     finally:
         if (fout != None): fout.close()
     return True
-
-extractVectorsFromListOfPosts(getTitles('output.txt'))
