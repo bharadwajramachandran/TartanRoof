@@ -72,6 +72,7 @@ def getTitles(textfile):
     Craigslist URL's and places them into a list of strings"""
     raw_file = readFile(textfile).split('\n')
     (scores, URL_list) = (raw_to_tuple(raw_file))
+    scores = [int(score) for score in scores]
     result = filter(None, map(URLtoTitle, URL_list))
     writeFile('titles.txt',unicode(result))
     return (scores,result)

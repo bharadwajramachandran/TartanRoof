@@ -4,16 +4,17 @@ import numpy as np
 from titleParse import *
 import os
 from sklearn import svm
+from sklearn.preprocessing import StandardScaler
 
-#testStringList = getTitles("test_data" + os.sep + "merged.txt")
+#testStringList =  getTitles("test_data" + os.sep + "merged.txt")
 #testStringList = getTitles("test.txt")
-"""This is a function designed to extract an attribute vector out of the text of
-a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
-module to determine the quality of the posting itself."""
-
-clf = svm.SVC()
+clf = svm.SVC(gamma = .001)
 
 def extractVectorsFromListOfPosts(postList):
+    """This is a function designed to extract an attribute vector out of the text of
+    a Craigslist posting. These attribute vectors will be fed to the SciKit Learn
+    module to determine the quality of the posting itself."""
+
     
     def extractVectorFromPost(postText):
         upperCaseText = string.upper(postText)
@@ -30,7 +31,7 @@ def extractVectorsFromListOfPosts(postList):
         upperCaseRatio = 1 - float(lowerCaseCount)/letterCount
         symbolRatio = float(symbolCount)/count
         whiteRatio = float(whiteCount)/count
-        return [upperCaseRatio, symbolRatio, whiteRatio,count]
+        return [upperCaseRatio*1000, symbolRatio*1000, whiteRatio*1000]
 
     result = np.array(map(extractVectorFromPost,postList))
     #print result
@@ -59,6 +60,12 @@ def getLearningModelFromArray(data_array, scores):
     clf.fit(data_array,np.array(scores))
     return True
 
+scaler = StandardScaler(copy = True)
 (scores,titles) = getTitles('output2.txt')
+print scores
 vectors = extractVectorsFromListOfPosts(titles)
 getLearningModelFromArray(vectors,scores)
+(_,testTitles) = getTitles('test.txt')
+x = extractVectorsFromListOfPosts(testTitles)
+print x
+print clf.predict(x)
