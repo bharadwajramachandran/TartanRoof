@@ -3,13 +3,17 @@ import sys
 import urllib2
 
 def URLtoTitle(url):
-    response = urllib2.urlopen(url)
-    page_source = response.read()
-    soup = BeautifulSoup(page_source)
-    return soup.title.string
+    assert(url.startswith("http"))
+    try:
+        response = urllib2.urlopen(url)
+        page_source = response.read()
+        soup = BeautifulSoup(page_source)
+    finally:
+        if (response != None): response.close()
+    if (soup.title == None): return ''
+    else: return soup.title.string
 
 def readWebPage(url):
-    assert(url.startswith("http://"))
     fin = contents = None
     try:
         fin = urllib.urlopen(url)
