@@ -25,7 +25,7 @@ def URLtoTitle(url):
                 myTitles.write((title+"\n").encode('utf8'))
             paras = soup.find_all('p')
             for para in paras:
-                print para.get_text()
+                #print para.get_text()
                 with open("descriptions.txt", "a") as desc_f:
                     replaced = (para.get_text()).replace('\n',' ')
                     desc_f.write((replaced+' ').encode('utf8'))

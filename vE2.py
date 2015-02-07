@@ -62,10 +62,10 @@ def getLearningModelFromArray(data_array, scores):
 
 scaler = StandardScaler(copy = True)
 (scores,titles) = getTitles('output2.txt')
-print scores
+#print scores
 vectors = extractVectorsFromListOfPosts(titles)
 getLearningModelFromArray(vectors,scores)
-(_,testTitles) = getTitles('test.txt')
+(_,testTitles) = getTitles('suhaas.txt')
 x = extractVectorsFromListOfPosts(testTitles)
 print x
 print clf.predict(x)

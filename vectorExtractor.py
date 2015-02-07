@@ -59,6 +59,6 @@ def getLearningModelFromArray(data_array, scores):
     clf.fit(data_array,np.array(scores))
     return True
 
-(scores,titles) = getTitles('output2.txt')
+(scores,titles) = getTitles('output3.txt')
 vectors = extractVectorsFromListOfPosts(titles)
 getLearningModelFromArray(vectors,scores)
